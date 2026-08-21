@@ -24,7 +24,7 @@ export const BUSINESS = {
   ],
 } as const;
 
-export const SITE_URL = 'https://zapieczeni-kontaktio-demos-projects.vercel.app';
+export const SITE_URL = 'https://zapieczeni.vercel.app';
 
 export const AMENITIES = [
   'na wynos',
