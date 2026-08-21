@@ -19,17 +19,18 @@ OUT = ROOT / "public" / "foto"
 
 RATIOS = {"hero": 4 / 5, "menu": 4 / 5, "lokal": 3 / 2}
 # jeden master na zdjęcie; warianty responsywne generuje next/image
-MASTER_WIDTH = 960
+# pliki up-*.png to zdjęcia lokalu podbite do 4K (Higgsfield), reszta prosto z IG
+MASTER_WIDTH = 1280
 
 # nazwa wyjściowa, plik źródłowy, kadr, kotwica pionowa (0 = góra, 1 = dół)
 MANIFEST = [
-    ("hero-zapiekanka", "src-778586979.jpg", "hero", 0.50),
+    ("hero-zapiekanka", "up-778586979.png", "hero", 0.50),
     ("zapiekanka-w-dloni", "src-766008182.jpg", "menu", 0.50),
     ("zapiekanki-z-gory", "src-729260042.jpg", "menu", 0.50),
     ("hot-dog", "src-753381870.jpg", "menu", 0.50),
     ("bowl-z-kukurydza", "src-773995718.jpg", "menu", 0.50),
     ("bowle-na-lezakach", "src-730515828.jpg", "menu", 0.50),
-    ("lokal-zewnatrz", "src-758328784.jpg", "lokal", 0.06),
+    ("lokal-zewnatrz", "up-758328784.png", "lokal", 0.06),
 ]
 
 
@@ -93,7 +94,7 @@ def main() -> None:
         print(f"{name:22} {image.size[0]}x{image.size[1]} -> {width}x{height}")
 
     # tło karty Open Graph, 1200x630, czytane przy buildzie przez opengraph-image
-    og_src = SRC / "src-778586979.jpg"
+    og_src = SRC / "up-778586979.png"
     if og_src.exists():
         og = grade(crop_to(Image.open(og_src).convert("RGB"), 1200 / 630, 0.45))
         og = og.resize((1200, 630), Image.LANCZOS)

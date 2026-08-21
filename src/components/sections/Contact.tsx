@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { BUSINESS, AMENITIES } from '@/lib/business';
 import { OpeningHours } from '@/components/OpeningHours';
-import { MapPanel } from '@/components/MapPanel';
+import { GoogleMap } from '@/components/GoogleMap';
 import { pl, phoneDisplay } from '@/lib/typo';
 
 function Facebook() {
@@ -31,82 +31,82 @@ function Instagram() {
 
 export function Contact() {
   return (
-    <section id="kontakt" className="border-t border-char bg-ink-2">
-      <div className="grid md:grid-cols-12">
-        <div className="px-5 py-16 sm:px-8 md:col-span-7 md:py-20 md:pl-[max(2rem,calc((100vw-86rem)/2+2rem))]">
-          <div className="grid gap-10 sm:grid-cols-2">
-            <div>
-              <p className="mb-3 text-[0.7rem] caps text-ember">Adres</p>
-              <p className="font-display text-[1.35rem] leading-snug text-cream">
-                {BUSINESS.street}
-              </p>
-              <p className="nums text-[0.95rem] text-cream-dim">
-                {pl(`${BUSINESS.postalCode} ${BUSINESS.city}`)}
-              </p>
+    <section id="kontakt" className="scroll-mt-20 border-t border-char bg-ink-2">
+      <div className="mx-auto max-w-[86rem] px-5 py-16 sm:px-8">
+        <div className="grid gap-10 md:grid-cols-12 md:gap-8">
+          <div className="md:col-span-5">
+            <p className="mb-3 text-[0.7rem] caps text-ember">Adres</p>
+            <p className="text-[1.35rem] font-medium leading-snug text-cream">{BUSINESS.street}</p>
+            <p className="nums text-[0.95rem] text-cream-dim">
+              {pl(`${BUSINESS.postalCode} ${BUSINESS.city}`)}
+            </p>
+            <p className="mt-2 text-[0.85rem] text-cream-dim">
+              {pl('Obok Żabki. Nie dowozimy, odbiór na miejscu albo na wynos.')}
+            </p>
 
-              <p className="mb-3 mt-9 text-[0.7rem] caps text-ember">Telefon</p>
+            <p className="mb-3 mt-9 text-[0.7rem] caps text-ember">Telefon</p>
+            <a
+              href={`tel:${BUSINESS.phone}`}
+              aria-label={`Zadzwoń pod numer ${phoneDisplay(BUSINESS.phoneDisplay)}`}
+              className="nums text-[clamp(1.7rem,4.6vw,2.4rem)] font-semibold leading-none text-cream transition-colors hover:text-ember-lite"
+            >
+              {phoneDisplay(BUSINESS.phoneDisplay)}
+            </a>
+
+            <div className="mt-8 flex gap-3">
               <a
-                href={`tel:${BUSINESS.phone}`}
-                aria-label={`Zadzwoń pod numer ${phoneDisplay(BUSINESS.phoneDisplay)}`}
-                className="nums font-display text-[clamp(1.7rem,4.6vw,2.4rem)] leading-none text-cream transition-colors hover:text-ember-lite"
+                href={BUSINESS.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Zapieczeni na Facebooku"
+                className="border border-char p-[0.6rem] text-cream-dim transition-colors hover:border-ember hover:text-ember-lite"
               >
-                {phoneDisplay(BUSINESS.phoneDisplay)}
+                <Facebook />
               </a>
-
-              <div className="mt-9 flex gap-3">
-                <a
-                  href={BUSINESS.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Zapieczeni na Facebooku"
-                  className="border border-char p-[0.6rem] text-cream-dim transition-colors hover:border-ember hover:text-ember-lite"
-                >
-                  <Facebook />
-                </a>
-                <a
-                  href={BUSINESS.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Zapieczeni na Instagramie"
-                  className="border border-char p-[0.6rem] text-cream-dim transition-colors hover:border-ember hover:text-ember-lite"
-                >
-                  <Instagram />
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <p className="mb-3 text-[0.7rem] caps text-ember">Godziny</p>
-              <OpeningHours />
+              <a
+                href={BUSINESS.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Zapieczeni na Instagramie"
+                className="border border-char p-[0.6rem] text-cream-dim transition-colors hover:border-ember hover:text-ember-lite"
+              >
+                <Instagram />
+              </a>
             </div>
           </div>
 
-          <ul className="mt-12 flex flex-wrap gap-x-5 gap-y-2 border-t border-char pt-6">
-            {AMENITIES.map((item) => (
-              <li key={item} className="text-[0.78rem] text-cream-dim">
-                {pl(item)}
-              </li>
-            ))}
-          </ul>
+          <div className="md:col-span-6 md:col-start-7">
+            <p className="mb-3 text-[0.7rem] caps text-ember">Godziny</p>
+            <OpeningHours />
+          </div>
         </div>
 
-        <div className="border-t border-char md:col-span-5 md:border-l md:border-t-0">
-          <figure className="m-0">
-            <div className="relative aspect-[3/2] w-full">
-              <Image
-                src="/foto/lokal-zewnatrz.webp"
-                alt="Lokal Zapieczeni od ulicy: kontener z szyldem i tablicą menu"
-                fill
-                loading="lazy"
-                sizes="(max-width: 768px) 100vw, 42vw"
-                className="object-cover"
-              />
-            </div>
-            <figcaption className="border-t border-char px-6 py-3 text-[0.78rem] text-cream-dim">
-              {pl('Rokicińska 120, obok Żabki. Parking przy ulicy, za darmo.')}
-            </figcaption>
-          </figure>
-          <MapPanel />
+        <ul className="mt-12 flex flex-wrap gap-x-5 gap-y-2 border-t border-char pt-6">
+          {AMENITIES.map((item) => (
+            <li key={item} className="text-[0.78rem] text-cream-dim">
+              {pl(item)}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="grid border-t border-char md:grid-cols-2">
+        <figure className="relative m-0 h-[16rem] md:h-[24rem]">
+          <Image
+            src="/foto/lokal-zewnatrz.webp"
+            alt="Lokal Zapieczeni od ulicy: kontener z szyldem i tablicą menu"
+            fill
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
+          />
+          <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink to-transparent px-6 pb-4 pt-10 text-[0.8rem] text-cream">
+            {pl('Rokicińska 120, obok Żabki. Parking przy ulicy, za darmo.')}
+          </figcaption>
+        </figure>
+
+        <div className="h-[16rem] border-t border-char md:h-[24rem] md:border-l md:border-t-0">
+          <GoogleMap />
         </div>
       </div>
     </section>
