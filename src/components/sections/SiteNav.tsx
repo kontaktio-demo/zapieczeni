@@ -37,7 +37,7 @@ export function SiteNav() {
 
         <ul className="flex items-center gap-5 sm:gap-8">
           {LINKS.map((link) => (
-            <li key={link.href} className={link.onPhone ? '' : 'hidden md:block'}>
+            <li key={link.href} className={link.onPhone ? 'hidden sm:block' : 'hidden md:block'}>
               <a
                 href={link.href}
                 className="text-[0.8rem] caps-tight text-cream-dim transition-colors hover:text-cream"
