@@ -1,93 +1,64 @@
+import Image from 'next/image';
 import { BUSINESS } from '@/lib/business';
-import { Ornament } from '@/components/ui/Ornament';
 import { Stars } from '@/components/ui/Stars';
+import { Wordmark } from '@/components/ui/Wordmark';
 import { OpenStatus } from '@/components/OpenStatus';
-import { WobblyRule } from '@/components/ui/WobblyRule';
 import { pl, phoneDisplay } from '@/lib/typo';
-
-const WORD = 'ZAPIECZENI'.split('');
 
 export function Hero() {
   return (
-    <section
-      id="top"
-      className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden pb-12 pt-28 lg:justify-end lg:pb-16 lg:pt-32"
-    >
-      <div
-        aria-hidden="true"
-        className="ember-glow pointer-events-none absolute left-[26%] top-[42%] h-[38rem] w-[52rem] -translate-x-1/2 -translate-y-1/2"
-      />
+    <section id="top" className="relative grid min-h-[100dvh] lg:grid-cols-2">
+      <div className="relative order-1 min-h-[52vh] lg:order-2 lg:min-h-full">
+        <Image
+          src="/foto/hero-zapiekanka.webp"
+          alt="Zapiekanka z bekonem, serem i sosem, trzymana nad drewnianym stołem"
+          fill
+          priority
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="object-cover"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent lg:bg-gradient-to-r lg:from-ink lg:via-ink/20 lg:to-transparent"
+        />
+      </div>
 
-      <div className="relative mx-auto w-full max-w-[86rem] px-5 sm:px-8">
+      <div className="order-2 flex flex-col justify-center px-5 pb-14 pt-8 sm:px-8 lg:order-1 lg:py-24 lg:pl-[max(2rem,calc((100vw-86rem)/2+2rem))] lg:pr-14">
         <h1 className="sr-only">Zapieczeni, kraftowe zapiekanki, Andrespol</h1>
 
-        <span
-          aria-hidden="true"
-          className="flex -ml-[0.045em] overflow-hidden py-[0.09em] font-display text-[clamp(2.9rem,16vw,15.4rem)] leading-[0.82] text-cream"
-        >
-          {WORD.map((letter, i) => (
-            <span key={i} className="inline-block overflow-hidden py-[0.07em]">
-              <span
-                data-letter
-                className="inline-block"
-                style={
-                  {
-                    '--i': i,
-                    fontVariationSettings: `"wght" ${880 + ((i * 37) % 3) * 20}, "WONK" 1, "opsz" ${132 + ((i * 53) % 5) * 3}`,
-                    letterSpacing: '-0.035em',
-                  } as React.CSSProperties
-                }
-              >
-                {letter}
-              </span>
-            </span>
-          ))}
-        </span>
+        <Wordmark width={360} priority className="h-auto w-[min(21rem,78vw)]" />
 
-        <div className="mt-3 flex items-center gap-4 sm:mt-4 sm:gap-6">
-          <Ornament draw className="h-5 w-[7rem] shrink-0 text-ember sm:h-6 sm:w-[9rem]" />
-          <p className="font-accent text-[clamp(1.05rem,3vw,1.75rem)] italic leading-none text-cream-dim">
-            kraftowe zapiekanki
-          </p>
+        <p className="mt-8 text-[1.35rem] font-medium leading-tight text-cream sm:text-[1.6rem]">
+          {pl(`${BUSINESS.street}, ${BUSINESS.city}`)}
+        </p>
+
+        <div className="mt-3">
+          <OpenStatus />
         </div>
 
-        <WobblyRule className="mt-9 h-2 w-full text-char sm:mt-12" seed={11} />
+        <a
+          href={BUSINESS.maps}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="nums mt-4 inline-flex items-center gap-2 self-start text-[0.86rem] text-cream-dim transition-colors hover:text-cream"
+        >
+          <Stars value={BUSINESS.rating} size={14} className="text-gold" />
+          <span>{pl('4,8 z 197 opinii w Google')}</span>
+        </a>
 
-        <div className="mt-7 grid gap-8 sm:mt-9 lg:grid-cols-12 lg:items-end lg:gap-6">
-          <div className="lg:col-span-5">
-            <p className="font-display text-[1.3rem] leading-tight text-cream">
-              {pl(`${BUSINESS.city}, ${BUSINESS.street}`)}
-            </p>
-            <div className="mt-2">
-              <OpenStatus />
-            </div>
-            <a
-              href={BUSINESS.maps}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nums mt-3 inline-flex items-center gap-2 text-[0.82rem] text-cream-dim transition-colors hover:text-cream"
-            >
-              <Stars value={BUSINESS.rating} size={13} className="text-gold" />
-              <span>{pl('4,8 z 197 opinii w Google')}</span>
-            </a>
-          </div>
-
-          <div
-            className="flex flex-col gap-3 sm:flex-row lg:col-span-6 lg:col-start-7 lg:justify-end"
+        <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <a
+            href={`tel:${BUSINESS.phone}`}
+            className="nums border border-ember bg-ember px-7 py-[0.95rem] text-center text-[0.84rem] font-semibold caps-tight text-ink transition-colors hover:border-ember-lite hover:bg-ember-lite"
           >
-            <a
-              href={`tel:${BUSINESS.phone}`}
-              className="nums border border-ember bg-ember px-7 py-[0.95rem] text-center text-[0.84rem] font-medium caps-tight text-ink transition-colors hover:border-ember-lite hover:bg-ember-lite"
-            >
-              {`${pl('Zadzwoń i zamów')} ${phoneDisplay(BUSINESS.phoneDisplay)}`}
-            </a>
-            <a
-              href="#menu"
-              className="border border-char px-7 py-[0.95rem] text-center text-[0.84rem] caps-tight text-cream-dim transition-colors hover:border-cream-dim hover:text-cream"
-            >
-              Zobacz menu
-            </a>
-          </div>
+            {`${pl('Zadzwoń i zamów')} ${phoneDisplay(BUSINESS.phoneDisplay)}`}
+          </a>
+          <a
+            href="#menu"
+            className="border border-char px-7 py-[0.95rem] text-center text-[0.84rem] font-medium caps-tight text-cream-dim transition-colors hover:border-cream-dim hover:text-cream"
+          >
+            Zobacz menu
+          </a>
         </div>
       </div>
     </section>

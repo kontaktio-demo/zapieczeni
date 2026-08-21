@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { BUSINESS } from '@/lib/business';
-import { pl } from '@/lib/typo';
 
 const EMBED = `https://maps.google.com/maps?q=${BUSINESS.lat},${BUSINESS.lng}&z=16&output=embed`;
 
@@ -16,13 +15,13 @@ export function MapPanel() {
         title="Mapa dojazdu do lokalu Zapieczeni"
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
-        className="h-full min-h-[22rem] w-full border-0 grayscale-[0.35] invert-[0.92] hue-rotate-180 saturate-[0.7]"
+        className="h-full min-h-[18rem] w-full border-0 grayscale-[0.35] invert-[0.92] hue-rotate-180 saturate-[0.7]"
       />
     );
   }
 
   return (
-    <div className="relative flex h-full min-h-[22rem] flex-col items-center justify-center gap-6 bg-ink-2 px-6 py-14">
+    <div className="relative flex h-full flex-col items-center justify-center gap-4 bg-ink-2 px-6 py-9">
       <svg
         viewBox="0 0 120 120"
         aria-hidden="true"
@@ -37,7 +36,7 @@ export function MapPanel() {
         <rect width="120" height="120" fill="url(#grid)" />
       </svg>
 
-      <svg viewBox="0 0 64 64" aria-hidden="true" className="relative h-16 w-16 text-ember">
+      <svg viewBox="0 0 64 64" aria-hidden="true" className="relative h-12 w-12 text-ember">
         <circle cx="32" cy="32" r="4" fill="currentColor" />
         <circle cx="32" cy="32" r="13" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.6" />
         <circle cx="32" cy="32" r="23" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.3" />
@@ -66,9 +65,6 @@ export function MapPanel() {
         </button>
       </div>
 
-      <p className="relative max-w-[26ch] text-center text-[0.7rem] leading-relaxed text-cream-dim/70">
-        {pl('Mapa ładuje się z Google dopiero po kliknięciu.')}
-      </p>
     </div>
   );
 }

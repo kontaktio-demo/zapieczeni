@@ -4,23 +4,6 @@ import { restaurantJsonLd } from '@/lib/jsonld';
 import { SITE_URL } from '@/lib/business';
 import './globals.css';
 
-const fraunces = localFont({
-  src: './fonts/fraunces.woff2',
-  weight: '300 900',
-  display: 'swap',
-  variable: '--font-fraunces',
-  fallback: ['Georgia', 'Times New Roman', 'serif'],
-});
-
-const instrument = localFont({
-  src: './fonts/instrument-italic.woff2',
-  weight: '400',
-  style: 'italic',
-  display: 'swap',
-  variable: '--font-instrument',
-  fallback: ['Georgia', 'serif'],
-});
-
 const interTight = localFont({
   src: './fonts/inter-tight.woff2',
   weight: '100 900',
@@ -69,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="pl"
-      className={`${fraunces.variable} ${instrument.variable} ${interTight.variable} antialiased`}
+      className={`${interTight.variable} antialiased`}
     >
       <body>
         {children}

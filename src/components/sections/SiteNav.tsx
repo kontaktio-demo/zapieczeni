@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react';
 import { BUSINESS } from '@/lib/business';
 import { phoneDisplay } from '@/lib/typo';
+import { Wordmark } from '@/components/ui/Wordmark';
 
 const LINKS = [
   { href: '#menu', label: 'Menu', onPhone: true },
-  { href: '#skad', label: 'Skąd to', onPhone: false },
   { href: '#opinie', label: 'Opinie', onPhone: false },
   { href: '#kontakt', label: 'Kontakt', onPhone: true },
 ];
@@ -24,15 +24,17 @@ export function SiteNav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        solid ? 'border-b border-char bg-ink/85 backdrop-blur-md' : 'border-b border-transparent'
+        solid
+          ? 'border-b border-char bg-ink/90 backdrop-blur-md'
+          : 'border-b border-transparent bg-gradient-to-b from-ink/85 to-transparent'
       }`}
     >
       <nav
         className="mx-auto flex h-14 max-w-[86rem] items-center justify-between px-5 sm:px-8"
         aria-label="Główna"
       >
-        <a href="#top" className="font-display text-[0.9rem] caps text-cream">
-          Zapieczeni
+        <a href="#top" aria-label="Zapieczeni, strona główna" className="shrink-0">
+          <Wordmark width={132} className="h-auto w-[7.5rem]" />
         </a>
 
         <ul className="flex items-center gap-5 sm:gap-8">

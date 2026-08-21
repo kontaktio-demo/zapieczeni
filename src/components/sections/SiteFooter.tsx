@@ -1,5 +1,6 @@
 import { BUSINESS } from '@/lib/business';
 import { pl, phoneDisplay } from '@/lib/typo';
+import { Wordmark } from '@/components/ui/Wordmark';
 
 export function SiteFooter() {
   return (
@@ -52,10 +53,8 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div aria-hidden="true" className="mt-2 h-[clamp(3.5rem,10vw,8rem)] overflow-hidden">
-        <span aria-hidden="true" className="block whitespace-nowrap text-center font-display text-[clamp(4.5rem,15.5vw,13.5rem)] font-black leading-[0.74] tracking-[-0.05em] text-cream/[0.055]">
-          ZAPIECZENI
-        </span>
+      <div className="mx-auto max-w-[86rem] px-5 pb-12 sm:px-8">
+        <Wordmark width={220} className="h-auto w-[11rem] opacity-40" />
       </div>
     </footer>
   );

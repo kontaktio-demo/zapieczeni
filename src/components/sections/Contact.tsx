@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { BUSINESS, AMENITIES } from '@/lib/business';
 import { OpeningHours } from '@/components/OpeningHours';
 import { MapPanel } from '@/components/MapPanel';
@@ -90,6 +91,21 @@ export function Contact() {
         </div>
 
         <div className="border-t border-char md:col-span-5 md:border-l md:border-t-0">
+          <figure className="m-0">
+            <div className="relative aspect-[3/2] w-full">
+              <Image
+                src="/foto/lokal-zewnatrz.webp"
+                alt="Lokal Zapieczeni od ulicy: kontener z szyldem i tablicą menu"
+                fill
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 42vw"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="border-t border-char px-6 py-3 text-[0.78rem] text-cream-dim">
+              {pl('Rokicińska 120, obok Żabki. Parking przy ulicy, za darmo.')}
+            </figcaption>
+          </figure>
           <MapPanel />
         </div>
       </div>
