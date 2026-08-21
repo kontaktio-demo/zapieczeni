@@ -46,7 +46,7 @@ export function Contact() {
               <p className="mb-3 mt-9 text-[0.7rem] caps text-ember">Telefon</p>
               <a
                 href={`tel:${BUSINESS.phone}`}
-                aria-label={`Zadzwoń pod numer ${BUSINESS.phoneDisplay}`}
+                aria-label={`Zadzwoń pod numer ${phoneDisplay(BUSINESS.phoneDisplay)}`}
                 className="nums font-display text-[clamp(1.7rem,4.6vw,2.4rem)] leading-none text-cream transition-colors hover:text-ember-lite"
               >
                 {phoneDisplay(BUSINESS.phoneDisplay)}

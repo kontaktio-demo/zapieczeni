@@ -31,7 +31,7 @@ export function Hero() {
                 data-letter
                 className="inline-block"
                 style={{
-                  fontVariationSettings: `"wght" ${880 + ((i * 37) % 3) * 20}, "SOFT" ${52 + ((i * 53) % 5) * 4}, "WONK" 1, "opsz" 144`,
+                  fontVariationSettings: `"wght" ${880 + ((i * 37) % 3) * 20}, "WONK" 1, "opsz" ${132 + ((i * 53) % 5) * 3}`,
                   letterSpacing: '-0.035em',
                 }}
               >
@@ -52,14 +52,13 @@ export function Hero() {
 
         <div className="mt-7 grid gap-8 sm:mt-9 md:grid-cols-12 md:items-end md:gap-6">
           <div className="md:col-span-5">
-            <p data-hero-meta className="font-display text-[1.3rem] leading-tight text-cream">
+            <p className="font-display text-[1.3rem] leading-tight text-cream">
               {pl(`${BUSINESS.city}, ${BUSINESS.street}`)}
             </p>
-            <div data-hero-meta className="mt-2">
+            <div className="mt-2">
               <OpenStatus />
             </div>
             <a
-              data-hero-meta
               href={BUSINESS.maps}
               target="_blank"
               rel="noopener noreferrer"
@@ -71,15 +70,13 @@ export function Hero() {
           </div>
 
           <div
-            data-hero-meta
             className="flex flex-col gap-3 sm:flex-row md:col-span-6 md:col-start-7 md:justify-end"
           >
             <a
               href={`tel:${BUSINESS.phone}`}
-              aria-label={`Zadzwoń pod numer ${BUSINESS.phoneDisplay}`}
-              className="nums border border-ember bg-ember px-7 py-[0.95rem] text-center text-[0.84rem] caps-tight text-white transition-colors hover:border-ember-lite hover:bg-ember-lite"
+              className="nums border border-ember bg-ember px-7 py-[0.95rem] text-center text-[0.84rem] font-medium caps-tight text-ink transition-colors hover:border-ember-lite hover:bg-ember-lite"
             >
-              Zadzwoń i zamów {phoneDisplay(BUSINESS.phoneDisplay)}
+              {`${pl('Zadzwoń i zamów')} ${phoneDisplay(BUSINESS.phoneDisplay)}`}
             </a>
             <a
               href="#menu"

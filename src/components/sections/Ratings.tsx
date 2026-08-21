@@ -13,7 +13,7 @@ export function Ratings() {
 
   return (
     <section id="opinie" className="relative overflow-hidden py-20 md:py-24">
-      <h2 className="sr-only">Opinie w Google</h2>
+      <h2 className="sr-only">{pl('Opinie w Google')}</h2>
 
       <div className="mx-auto max-w-[86rem] px-5 sm:px-8">
         <div className="grid gap-10 md:grid-cols-12 md:items-end md:gap-8">
@@ -22,7 +22,7 @@ export function Ratings() {
               <span
                 aria-hidden="true"
                 className="nums -ml-[0.035em] block pb-[0.1em] font-display text-[clamp(6rem,17vw,12rem)] font-black leading-[0.86] tracking-[-0.05em] text-cream"
-                style={{ fontVariationSettings: '"opsz" 28, "SOFT" 40, "WONK" 0' }}
+                style={{ fontVariationSettings: '"opsz" 28, "WONK" 0' }}
               >
                 4,8
               </span>
@@ -64,7 +64,7 @@ export function Ratings() {
         </div>
 
         <div className="mt-14 grid gap-x-8 gap-y-4 md:grid-cols-12">
-          <p className="text-[0.7rem] caps text-ember md:col-span-3 md:pt-5">Z opinii w Google</p>
+          <p className="text-[0.7rem] caps text-ember md:col-span-3 md:pt-5">{pl('Z opinii w Google')}</p>
           <ul className="md:col-span-8 md:col-start-4">
             {EXCERPTS.map((item) => (
               <li

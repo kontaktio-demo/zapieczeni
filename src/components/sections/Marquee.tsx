@@ -1,3 +1,5 @@
+import { pl } from '@/lib/typo';
+
 const WORDS = [
   'kraftowe zapiekanki',
   'hot dogi',
@@ -26,7 +28,7 @@ export function Marquee() {
             {run.map((word, i) => (
               <span key={i} className="flex items-center gap-7">
                 <span className="whitespace-nowrap font-display text-[0.82rem] caps text-cream-dim">
-                  {word}
+                  {pl(word)}
                 </span>
                 <Diamond />
               </span>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
@@ -14,83 +14,59 @@ export function Motion() {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
-      mm.add(
-        {
-          motion: '(prefers-reduced-motion: no-preference)',
-          desktop: '(min-width: 768px)',
-        },
-        (context) => {
-          const { motion, desktop } = context.conditions as {
-            motion: boolean;
-            desktop: boolean;
-          };
-          if (!motion) return;
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        const intro = gsap.timeline({ delay: 0.12 });
 
-          const letters = gsap.utils.toArray<HTMLElement>('[data-letter]');
-          const ornamentPath = document.querySelector<SVGPathElement>('[data-ornament="draw"]');
+        intro.from('[data-letter]', {
+          yPercent: 112,
+          rotateX: -62,
+          duration: 1.15,
+          ease: 'expo.out',
+          stagger: 0.04,
+        });
 
-          const intro = gsap.timeline({ delay: 0.15 });
+        const ornament = document.querySelector<SVGPathElement>('[data-ornament="draw"]');
+        if (ornament) {
+          const length = ornament.getTotalLength();
+          gsap.set(ornament, { strokeDasharray: length, strokeDashoffset: length });
+          intro.to(ornament, { strokeDashoffset: 0, duration: 1.6, ease: 'power2.inOut' }, '-=0.5');
+        }
 
-          intro.from(letters, {
-            yPercent: 112,
-            rotateX: -62,
-            duration: 1.15,
-            ease: 'expo.out',
-            stagger: 0.04,
-          });
+        gsap.from('[data-menu-row]', {
+          x: -10,
+          opacity: 0.15,
+          duration: 0.5,
+          ease: 'power2.out',
+          stagger: 0.03,
+          scrollTrigger: { trigger: '[data-menu-list]', start: 'top 84%' },
+        });
 
-          if (ornamentPath) {
-            const len = ornamentPath.getTotalLength();
-            gsap.set(ornamentPath, { strokeDasharray: len, strokeDashoffset: len });
-            intro.to(
-              ornamentPath,
-              { strokeDashoffset: 0, duration: 1.6, ease: 'power2.inOut' },
-              '-=0.45',
-            );
-          }
+        gsap.from('[data-bar]', {
+          scaleX: 0,
+          transformOrigin: 'left center',
+          duration: 1.1,
+          ease: 'power3.out',
+          stagger: 0.06,
+          scrollTrigger: { trigger: '[data-bars]', start: 'top 82%' },
+        });
+      });
 
-          intro.from(
-            '[data-hero-meta]',
-            { y: 14, opacity: 0, duration: 0.8, ease: 'power2.out', stagger: 0.09 },
-            '-=1.1',
-          );
-
-          gsap.from('[data-menu-row]', {
-            x: -10,
-            opacity: 0.15,
-            duration: 0.5,
-            ease: 'power2.out',
-            stagger: 0.03,
-            scrollTrigger: { trigger: '[data-menu-list]', start: 'top 84%' },
-          });
-
-          gsap.from('[data-bar]', {
-            scaleX: 0,
-            transformOrigin: 'left center',
-            duration: 1.1,
-            ease: 'power3.out',
-            stagger: 0.06,
-            scrollTrigger: { trigger: '[data-bars]', start: 'top 82%' },
-          });
-
-          if (desktop) {
-            gsap.fromTo(
-              '[data-sweep]',
-              { '--sweep': '125%' },
-              {
-                '--sweep': '-45%',
-                ease: 'none',
-                scrollTrigger: {
-                  trigger: '[data-menu-head]',
-                  start: 'top bottom',
-                  end: 'bottom top',
-                  scrub: 0.6,
-                },
-              },
-            );
-          }
-        },
-      );
+      mm.add('(prefers-reduced-motion: no-preference) and (min-width: 768px)', () => {
+        gsap.fromTo(
+          '[data-sweep]',
+          { '--sweep': '125%' },
+          {
+            '--sweep': '-45%',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '[data-menu-head]',
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 0.6,
+            },
+          },
+        );
+      });
 
       return () => mm.revert();
     });

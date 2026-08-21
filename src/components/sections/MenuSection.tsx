@@ -6,8 +6,8 @@ import { pl, price as fmt } from '@/lib/typo';
 import { WobblyRule } from '@/components/ui/WobblyRule';
 
 const TABS = [
-  ...categories.map((c) => ({ id: c.id, label: c.label })),
-  { id: 'dodatki', label: 'Sosy i dodatki' },
+  ...categories.map((c) => ({ id: c.id, label: pl(c.label) })),
+  { id: 'dodatki', label: pl('Sosy i dodatki') },
 ];
 
 function splitInTwo(items: MenuItem[]): [MenuItem[], MenuItem[]] {
@@ -43,7 +43,7 @@ function Row({ item }: { item: MenuItem }) {
     >
       <div className="flex items-baseline gap-2 sm:gap-3">
         <h3 className="menu-name font-display text-[1.02rem] font-semibold leading-tight text-cream transition-colors sm:text-[1.1rem]">
-          {item.name}
+          {pl(item.name)}
         </h3>
         <span className="leader" />
         <PriceCell value={item.price} />
@@ -81,9 +81,13 @@ export function MenuSection() {
       <div aria-hidden="true" className="paper pointer-events-none absolute inset-0" />
 
       <div data-menu-head className="relative mb-7 overflow-hidden">
-        <h2 className="whitespace-nowrap pl-5 font-display text-[clamp(4.2rem,17vw,15rem)] font-light leading-[0.8] tracking-[-0.045em] text-cream/[0.1] sm:pl-8">
+        <h2 className="sr-only">Menu</h2>
+        <span
+          aria-hidden="true"
+          className="block whitespace-nowrap pl-5 font-display text-[clamp(4.2rem,17vw,15rem)] font-light leading-[0.8] tracking-[-0.045em] text-cream/[0.1] sm:pl-8"
+        >
           Menu
-        </h2>
+        </span>
         <span
           data-sweep
           aria-hidden="true"
@@ -208,7 +212,7 @@ export function MenuSection() {
               ))}
             </ul>
 
-            <h3 className="mb-4 mt-10 text-[0.72rem] caps text-ember">Sosy kraftowe</h3>
+            <h3 className="mb-4 mt-10 text-[0.72rem] caps text-ember">{pl('Sosy kraftowe')}</h3>
             <ul className="flex flex-wrap gap-2">
               {sosyKraftowe.map((s) => (
                 <li
@@ -230,7 +234,7 @@ export function MenuSection() {
                   className="menu-row flex items-baseline gap-3 border-b border-char py-[0.6rem] last:border-b-0"
                 >
                   <span className="menu-name text-[0.92rem] text-cream transition-colors">
-                    {item.name}
+                    {pl(item.name)}
                   </span>
                   <span className="leader" />
                   <PriceCell value={item.price} />

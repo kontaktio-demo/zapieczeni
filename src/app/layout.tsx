@@ -1,28 +1,32 @@
 import type { Metadata, Viewport } from 'next';
-import { Fraunces, Instrument_Serif, Inter_Tight } from 'next/font/google';
+import localFont from 'next/font/local';
 import { restaurantJsonLd } from '@/lib/jsonld';
 import { SITE_URL } from '@/lib/business';
 import './globals.css';
 
-const fraunces = Fraunces({
-  subsets: ['latin', 'latin-ext'],
+const fraunces = localFont({
+  src: './fonts/fraunces.woff2',
+  weight: '300 900',
   display: 'swap',
   variable: '--font-fraunces',
-  axes: ['SOFT', 'WONK', 'opsz'],
+  fallback: ['Georgia', 'Times New Roman', 'serif'],
 });
 
-const instrument = Instrument_Serif({
-  subsets: ['latin', 'latin-ext'],
+const instrument = localFont({
+  src: './fonts/instrument-italic.woff2',
   weight: '400',
   style: 'italic',
   display: 'swap',
   variable: '--font-instrument',
+  fallback: ['Georgia', 'serif'],
 });
 
-const interTight = Inter_Tight({
-  subsets: ['latin', 'latin-ext'],
+const interTight = localFont({
+  src: './fonts/inter-tight.woff2',
+  weight: '100 900',
   display: 'swap',
   variable: '--font-inter-tight',
+  fallback: ['system-ui', 'Segoe UI', 'sans-serif'],
 });
 
 export const metadata: Metadata = {

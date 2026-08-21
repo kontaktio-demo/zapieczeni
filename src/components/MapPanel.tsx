@@ -53,7 +53,7 @@ export function MapPanel() {
           href={BUSINESS.directions}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-ember px-5 py-[0.7rem] text-[0.76rem] caps-tight text-white transition-colors hover:bg-ember-lite"
+          className="bg-ember px-5 py-[0.7rem] text-[0.76rem] font-medium caps-tight text-ink transition-colors hover:bg-ember-lite"
         >
           Wyznacz trasę
         </a>

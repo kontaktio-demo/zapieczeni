@@ -50,7 +50,7 @@ export function SiteNav() {
 
         <a
           href={`tel:${BUSINESS.phone}`}
-          aria-label={`Zadzwoń pod numer ${BUSINESS.phoneDisplay}`}
+          aria-label={`Zadzwoń pod numer ${phoneDisplay(BUSINESS.phoneDisplay)}`}
           className="nums border border-ember px-3 py-[0.4rem] text-[0.78rem] text-ember-lite transition-colors hover:bg-ember hover:text-white"
         >
           {phoneDisplay(BUSINESS.phoneDisplay)}

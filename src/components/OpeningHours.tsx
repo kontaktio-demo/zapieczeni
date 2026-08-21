@@ -28,13 +28,15 @@ export function OpeningHours() {
                 (isToday ? 'text-cream' : 'text-cream-dim')
               }
             >
-              <dt className={'w-[7.5rem] shrink-0 ' + (isToday ? 'font-medium' : '')}>
-                {DAY_NAMES[day]}
-                {isToday && (
-                  <span className="ml-2 align-middle text-[0.62rem] caps text-ember-lite">dziś</span>
-                )}
+              <dt className={'flex flex-1 items-baseline gap-3 ' + (isToday ? 'font-medium' : '')}>
+                <span className="shrink-0">
+                  {DAY_NAMES[day]}
+                  {isToday && (
+                    <span className="ml-2 align-middle text-[0.62rem] caps text-ember-lite">dziś</span>
+                  )}
+                </span>
+                <span className="leader" />
               </dt>
-              <span className="leader" />
               <dd className={isToday ? 'text-gold' : ''}>
                 {toClock(HOURS[day].open)}–{toClock(HOURS[day].close)}
               </dd>

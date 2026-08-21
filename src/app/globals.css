@@ -46,7 +46,7 @@
 
   h1, h2, h3 {
     font-family: var(--font-display);
-    font-variation-settings: "SOFT" 60, "WONK" 1, "opsz" 120;
+    font-variation-settings: "WONK" 1, "opsz" 120;
     letter-spacing: -0.03em;
     text-wrap: balance;
   }
