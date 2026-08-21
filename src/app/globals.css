@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0A0806;
+  --color-ink-2: #12100C;
+  --color-char: #1E1A15;
+  --color-cream: #F5EADA;
+  --color-cream-dim: #B9AC98;
+  --color-ember: #C9662F;
+  --color-ember-lite: #E3873F;
+  --color-gold: #D9A441;
+
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-accent: var(--font-instrument), Georgia, serif;
+  --font-body: var(--font-inter-tight), system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  * {
+    min-width: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-ink);
+    color: var(--color-cream);
+    font-family: var(--font-body);
+    font-feature-settings: "ss01", "cv05";
+    font-synthesis-weight: none;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-ember);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ember-lite);
+    outline-offset: 3px;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-variation-settings: "SOFT" 60, "WONK" 1, "opsz" 120;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.paper {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='5'/%3E%3CfeColorMatrix values='0 0 0 0 0.79 0 0 0 0 0.4 0 0 0 0 0.18 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23p)'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+  opacity: 0.05;
+}
+
+.ember-glow {
+  background: radial-gradient(closest-side, var(--color-ember) 0%, rgba(201, 102, 47, 0.35) 42%, transparent 78%);
+  filter: blur(110px);
+  animation: breathe 9s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.46; transform: scale(1); }
+  50% { opacity: 0.68; transform: scale(1.06); }
+}
+
+@keyframes live-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.live-dot {
+  animation: live-dot 2.4s ease-in-out infinite;
+}
+
+.caps {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.caps-tight {
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.leader {
+  flex: 1 1 auto;
+  min-width: 1.5rem;
+  height: 0;
+  align-self: flex-end;
+  margin-bottom: 0.34em;
+  border-bottom: 1px dotted color-mix(in srgb, var(--color-cream-dim) 45%, transparent);
+}
+
+.menu-row:hover .leader,
+.menu-row:focus-within .leader {
+  border-bottom-color: color-mix(in srgb, var(--color-ember-lite) 70%, transparent);
+}
+
+.menu-row:hover .menu-name,
+.menu-row:focus-within .menu-name {
+  color: var(--color-ember-lite);
+}
+
+.marquee-track {
+  animation: marquee 46s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-duration: 130s;
+}
+
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.menu-sweep {
+  color: var(--color-ember-lite);
+  opacity: 0;
+}
+
+@supports (mask-image: linear-gradient(#000, #000)) {
+  .menu-sweep {
+    opacity: 0.5;
+    mask-image: linear-gradient(96deg, transparent 40%, #000 50%, transparent 60%);
+    mask-size: 240% 100%;
+    mask-repeat: no-repeat;
+    mask-position: var(--sweep, 120%) 0;
+  }
+}
