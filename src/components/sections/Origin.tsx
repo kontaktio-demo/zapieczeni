@@ -6,7 +6,7 @@ const FACTS = [
   `${zapiekanki.items.length} zapiekanek, ${hotDogi.items.length} hot dogów. Do tego frytki i bowle.`,
   'Każda zapiekanka w dwóch rozmiarach, małej albo dużej.',
   `Sosy kraftowe: ${sosyKraftowe.join(', ')}.`,
-  'Nie dowozimy. Odbiór na miejscu albo na wynos, parking przed lokalem za darmo.',
+  'Nie dowozimy. Odbiór na miejscu albo na wynos, parking przy ulicy za darmo.',
 ];
 
 export function Origin() {

@@ -42,7 +42,7 @@ export function Ratings() {
             </div>
           </div>
 
-          <div data-bars className="md:col-span-6 md:col-start-7 md:pb-3">
+          <div data-reveal="bars" className="md:col-span-6 md:col-start-7 md:pb-3">
             {BUSINESS.ratingBreakdown.map((row) => (
               <div key={row.stars} className="flex items-center gap-4 py-[0.3rem]">
                 <span className="nums w-3 shrink-0 text-right text-[0.74rem] text-cream-dim">
@@ -50,7 +50,6 @@ export function Ratings() {
                 </span>
                 <span className="h-[4px] flex-1 bg-char">
                   <span
-                    data-bar
                     className="block h-full bg-ember"
                     style={{ width: `${Math.round((row.count / max) * 100)}%` }}
                   />

@@ -38,7 +38,6 @@ function PriceCell({ value }: { value: Price }) {
 function Row({ item }: { item: MenuItem }) {
   return (
     <li
-      data-menu-row
       className="menu-row break-inside-avoid border-b border-char/70 py-[0.72rem] last:border-b-0"
     >
       <div className="flex items-baseline gap-2 sm:gap-3">
@@ -149,7 +148,7 @@ export function MenuSection() {
             )}
 
             {cat.items.length > 0 ? (
-              <div data-menu-list className="grid gap-x-14 md:grid-cols-2">
+              <div className="grid gap-x-14 md:grid-cols-2">
                 {splitInTwo(cat.items).map((column, index) => (
                   <div key={index}>
                     {cat.priceHeadings && (
@@ -170,7 +169,7 @@ export function MenuSection() {
                         </span>
                       </div>
                     )}
-                    <ul className="mt-1">
+                    <ul data-reveal="menu-list" className="mt-1">
                       {column.map((item) => (
                         <Row key={item.name} item={item} />
                       ))}

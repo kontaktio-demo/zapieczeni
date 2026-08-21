@@ -11,7 +11,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden pb-12 pt-28 md:justify-end md:pb-16 md:pt-32"
+      className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden pb-12 pt-28 lg:justify-end lg:pb-16 lg:pt-32"
     >
       <div
         aria-hidden="true"
@@ -30,10 +30,13 @@ export function Hero() {
               <span
                 data-letter
                 className="inline-block"
-                style={{
-                  fontVariationSettings: `"wght" ${880 + ((i * 37) % 3) * 20}, "WONK" 1, "opsz" ${132 + ((i * 53) % 5) * 3}`,
-                  letterSpacing: '-0.035em',
-                }}
+                style={
+                  {
+                    '--i': i,
+                    fontVariationSettings: `"wght" ${880 + ((i * 37) % 3) * 20}, "WONK" 1, "opsz" ${132 + ((i * 53) % 5) * 3}`,
+                    letterSpacing: '-0.035em',
+                  } as React.CSSProperties
+                }
               >
                 {letter}
               </span>
@@ -50,8 +53,8 @@ export function Hero() {
 
         <WobblyRule className="mt-9 h-2 w-full text-char sm:mt-12" seed={11} />
 
-        <div className="mt-7 grid gap-8 sm:mt-9 md:grid-cols-12 md:items-end md:gap-6">
-          <div className="md:col-span-5">
+        <div className="mt-7 grid gap-8 sm:mt-9 lg:grid-cols-12 lg:items-end lg:gap-6">
+          <div className="lg:col-span-5">
             <p className="font-display text-[1.3rem] leading-tight text-cream">
               {pl(`${BUSINESS.city}, ${BUSINESS.street}`)}
             </p>
@@ -70,7 +73,7 @@ export function Hero() {
           </div>
 
           <div
-            className="flex flex-col gap-3 sm:flex-row md:col-span-6 md:col-start-7 md:justify-end"
+            className="flex flex-col gap-3 sm:flex-row lg:col-span-6 lg:col-start-7 lg:justify-end"
           >
             <a
               href={`tel:${BUSINESS.phone}`}

@@ -17,6 +17,7 @@ export function Ornament({ className = '', draw = false }: Props) {
     >
       <path
         d={PATH}
+        pathLength={1}
         stroke="currentColor"
         strokeWidth="2.1"
         strokeLinecap="round"

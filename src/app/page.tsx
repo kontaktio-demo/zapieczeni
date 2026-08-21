@@ -7,7 +7,7 @@ import { Ratings } from '@/components/sections/Ratings';
 import { Contact } from '@/components/sections/Contact';
 import { SiteFooter } from '@/components/sections/SiteFooter';
 import { CallBar } from '@/components/CallBar';
-import { Motion } from '@/components/Motion';
+import { Reveal } from '@/components/Reveal';
 
 export default function Page() {
   return (
@@ -24,7 +24,7 @@ export default function Page() {
       </main>
       <SiteFooter />
       <CallBar />
-      <Motion />
+      <Reveal />
     </>
   );
 }
